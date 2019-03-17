@@ -22,8 +22,6 @@ render([
         <Router>
             <Switch>
                 <Route path="/login" component={Auth}/>
-                <Route path="/forgot" component={Auth}/>
-                <Route path="/reset" component={Auth}/>
                 <PrivateRoute path="/" component={App}/>
             </Switch>
         </Router>

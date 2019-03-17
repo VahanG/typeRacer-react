@@ -5,10 +5,7 @@ const uuidv4 = require('uuid/v4');
 const getToken = async (req, res, next) => {
     const {username, password} = req.body;
     const user = await ORM.findFirst(modelName, {username});
-    if (!user) {
-        // res.status(404);// nah, send 401 anyway
-    }
-    if (user.password !== password) {
+    if (!user || user.password !== password) {
         res.status(401);
         res.send({});
         return;
@@ -21,7 +18,7 @@ const getToken = async (req, res, next) => {
 
 const getUserByToken = async (req, res, next) => {
     const token = req.cookies.token;
-    const user = ORM.findFirst(modelName, {token})[0];
+    const user = await ORM.findFirst(modelName, {token});
     if (!user) {
         res.status(401);
         res.send({msg: 'invalid token'})

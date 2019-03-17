@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const {getToken, getUserByToken} = require('./controller');
+const {getToken, getUserByToken} = require('./requests');
 
 const expiresInHours = 300 * 24; //forever )))
 router.post('/login', getToken, async (req, res, next) => {
