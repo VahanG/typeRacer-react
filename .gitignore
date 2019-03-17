@@ -1,4 +1,5 @@
 node_modules
 public/scripts
 db/user.json
+db/rooms.json
 .idea

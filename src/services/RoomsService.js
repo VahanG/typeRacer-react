@@ -9,7 +9,6 @@ class RoomsService extends SocketService {
     addRoom() {
         console.log('oppening room');
         return this.sendPromisified('new-room').then((data) => {
-            console.log('new-room...', data);
             const { id: roomId } = data;
             return roomId;
         }).catch(e => {
@@ -19,7 +18,7 @@ class RoomsService extends SocketService {
     }
 
     _getRooms() {
-        return [];
+        return this.sendPromisified('get-rooms')
     }
 
     init() {

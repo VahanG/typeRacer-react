@@ -14,7 +14,7 @@ class ORM {
         return JSON.parse(data);
     }
 
-    static async find(modelName, filter) {
+    static async find(modelName, filter = {}) {
         const content = await ORM._getFileContent(modelName);
         const keys = Object.keys(filter);
         const list = content.filter(item => keys.reduce((r, k) => r ? item[k] === filter[k] : false, true));

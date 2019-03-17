@@ -5,3 +5,4 @@ export const LOG_OUT = 'LOG_OUT';
 
 
 export const GET_ROOMS_SUCCESS = 'GET_ROOMS_SUCCESS';
+export const ADD_ROOM_SUCCESS = 'ADD_ROOM_SUCCESS';

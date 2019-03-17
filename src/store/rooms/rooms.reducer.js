@@ -14,6 +14,12 @@ export default function userReducer(state = initialState, action) {
                 rooms: action.rooms,
                 gettingRooms: false,
             };
+        case types.ADD_ROOM_SUCCESS:
+            return {
+              ...state,
+              rooms: [...state.rooms, action.room],
+              gettingRooms: false,
+            };
         default:
             return state
     }
