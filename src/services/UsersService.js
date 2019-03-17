@@ -14,30 +14,20 @@ class UserService extends Request {
         return this.send({path: `/`, options,});
     }
 
-    getCurentUser() {
+    getCurrentUser() {
         const options = {
             method: 'GET',
         };
-        return this.send({ path: '/current', options })
-            .then(({ status, json }) => ({ status, currentUser: json }));
+        return this.send({path: '/current', options})
+            .then(({status, json}) => ({status, currentUser: json}));
     }
 
     getUser(id) {
         const options = {
             method: 'GET',
         };
-        return this.send({ path: `/${id}`, options })
-            .then(({ status, json }) => ({ status, user: json }));
-    }
-
-
-    updatePassword(password) {
-        const { oldPassword, newPassword } = password;
-        const options = {
-            method: 'PUT',
-            body: JSON.stringify({ oldPassword, newPassword }),
-        };
-        return this.send({ path: `/current/password`, options, });
+        return this.send({path: `/${id}`, options})
+            .then(({status, json}) => ({status, user: json}));
     }
 
     updateUser(data) {
@@ -45,8 +35,8 @@ class UserService extends Request {
             method: 'PUT',
             body: JSON.stringify(data)
         };
-        return this.send({ path: '/current', options })
-            .then(({ status, json }) => ({ status, currentUser: json }));
+        return this.send({path: '/current', options})
+            .then(({status, json}) => ({status, currentUser: json}));
     }
 
     searchUser(searchedQuery) {
@@ -57,7 +47,7 @@ class UserService extends Request {
         const options = {
             method: 'GET',
         };
-        return this.send({ path: `?${Request.makeQuery(query)}`, options });
+        return this.send({path: `?${Request.makeQuery(query)}`, options});
     }
 
 }

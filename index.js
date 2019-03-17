@@ -6,6 +6,9 @@ const page = require('./page/');
 
 
 const app = express();
+const server = require('http').Server(app);
+require('./api/socket')(server);
+
 app.use(cookieParser());
 app.use(bodyParser.json({limit:'50mb'}));
 app.use(bodyParser.urlencoded());
@@ -17,6 +20,7 @@ app.use('/api/auth', require('./api/auth'));
 app.use('/api/user/current', require('./api/current'));
 
 CRUDMaker.addEndpoint('api/user');
+CRUDMaker.addEndpoint('api/rooms');
 
 
 app.use('/public',express.static('public'));
@@ -31,6 +35,7 @@ app.use(async (req, res, next) => {
 
 
 app.use(express.static('public'));
-app.listen(8080,() => {
+
+server.listen(8080,() => {
     console.log(`Listening on 8080`);
 });

@@ -1,7 +1,7 @@
 import Request from './Request';
 
 
-class UserService extends Request {
+class AuthService extends Request {
     constructor() {
         super('auth');
     }
@@ -12,11 +12,8 @@ class UserService extends Request {
             //body: `grant_type=password&username=${username}&password=${password}`
             body: JSON.stringify({username, password})
         };
-        return this.send({
-            path: '/login',
-            options,
-        });
+        return this.send({path: '/login', options});
     }
 }
 
-export default new UserService();
+export default new AuthService();

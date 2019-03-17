@@ -2,7 +2,7 @@ import * as types from './../types';
 
 import UserService from './../../services/UsersService';
 import AuthService from './../../services/AuthService';
-
+import {getRooms} from './../rooms/rooms.actions';
 
 export function login(username, password) {
     return dispatch => {
@@ -19,12 +19,13 @@ export function login(username, password) {
 
 export function getCurrentUser() {
     return (dispatch) => {
-        UserService.getCurentUser().then(({status, currentUser}) => {
+        UserService.getCurrentUser().then(({status, currentUser}) => {
             if (UserService.isOkStatus(status)) {
                 dispatch({
                     type: types.GET_CURRENT_USER_SUCCESS,
                     currentUser,
-                })
+                });
+                dispatch(getRooms());
             } else {
                 dispatch(logout());
             }
