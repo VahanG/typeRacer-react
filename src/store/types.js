@@ -1,0 +1,2 @@
+export const GET_CURRENT_USER_SUCCESS = 'GET_CURRENT_USER_SUCCESS';
+export const LOG_OUT = 'LOG_OUT';

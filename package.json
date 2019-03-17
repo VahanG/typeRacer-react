@@ -1,0 +1,40 @@
+{
+  "name": "typeracer-react",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack --watch --watch-poll --config webpack.common.js",
+    "run": "node --inspect=0.0.0.0 index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VahanG/typeRacer-react.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/VahanG/typeRacer-react/issues"
+  },
+  "homepage": "https://github.com/VahanG/typeRacer-react#readme",
+  "devDependencies": {
+    "@babel/core": "^7.2.2",
+    "@babel/preset-react": "^7.0.0",
+    "babel": "^6.23.0",
+    "babel-loader": "^8.0.5",
+    "webpack": "^4.29.3",
+    "webpack-cli": "^3.2.3"
+  },
+  "dependencies": {
+    "express": "^4.16.4",
+    "uuid": "^3.3.2",
+    "body-parser": "^1.18.3",
+    "react": "^16.8.4",
+    "react-dom": "^16.8.4",
+    "react-redux": "^6.0.1",
+    "react-router-dom": "^4.4.0",
+    "redux": "^4.0.1",
+    "redux-thunk": "^2.3.0"
+  }
+}
