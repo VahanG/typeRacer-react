@@ -8,6 +8,7 @@ module.exports = (server)=>{
         cookie: true,
     });
     const rooms = require('./rooms')(io);
+    const game = require('./game')(io);
     io.use(async (socket, next) => {
         const token = readCookie('token', socket.request.headers.cookie);
         const user = await ORM.findFirst('user', {token});

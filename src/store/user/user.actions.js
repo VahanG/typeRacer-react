@@ -20,9 +20,6 @@ export function login(username, password) {
 
 export function getCurrentUser() {
     return (dispatch) => {
-        dispatch({
-            type: types.GET_CURRENT_USER_REQUEST,
-        });
         UserService.getCurrentUser().then(({status, currentUser}) => {
             if (UserService.isOkStatus(status)) {
                 dispatch({

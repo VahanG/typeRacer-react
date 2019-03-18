@@ -10,20 +10,20 @@ class RoomsService extends SocketService {
 
     }
 
-    getGame() {
-        return this.sendPromisified('get-game');
+    getGame(id) {
+        return this.sendPromisified('join-game', id);
     }
 
     init(id) {
-        if(this.ready && !this.connected){
+        if (this.ready && !this.connected) {
             this.reconnect();
         }
-        if(!this.ready){
-            return this.connect().then( () => {
-                return this.getGame();
+        if (!this.ready) {
+            return this.connect().then(() => {
+                return this.getGame(id);
             })
-        }else {
-            return this.getGame();
+        } else {
+            return this.getGame(id);
         }
     }
 

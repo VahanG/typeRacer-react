@@ -5,8 +5,14 @@ import Rooms from './rooms/Rooms';
 import Game from './game/Game';
 
 const GameBoard = (props) => {
+    const {
+        location: {search}
+    } = props;
+    let gameId = search.split('gameId=')[1];
+    gameId = gameId && gameId.split('&')[0];
+
     const rooms = useMemo(() => <Rooms />, []);
-    const game = useMemo(() => <Game />, []);
+    const game = useMemo(() => !!gameId && <Game gameId={gameId} />, [gameId]);
 
     return <div>
         the game
@@ -15,4 +21,4 @@ const GameBoard = (props) => {
     </div>
 };
 
-export default GameBoard;
+export default withRouter(GameBoard);

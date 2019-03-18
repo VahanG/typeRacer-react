@@ -42,7 +42,7 @@ export default class SocketService {
 
     sendPromisified(action, data) {
         return new Promise((res, rej) => {
-            this._socket.emit(action, {}, (err, data) => {
+            this._socket.emit(action, data, (err, data) => {
                 if (err) {
                     console.log(err);
                     rej(err);

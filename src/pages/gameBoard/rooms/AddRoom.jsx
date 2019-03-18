@@ -25,6 +25,6 @@ const mapProps = state => {
 
 const mapActions = dispatch => bindActionCreators({
     addRoomAndEnter,
-},dispatch);
+}, dispatch);
 
 export default connect(mapProps, mapActions)(AddRoom);

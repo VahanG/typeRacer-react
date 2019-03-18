@@ -1,17 +1,37 @@
-import React from 'react';
-import {withRouter} from 'react-router-dom';
+import React, {useEffect} from 'react';
+import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
 
+import {joinGame} from './../../../store/game/game.actions';
 
 const Game = (props) => {
     const {
-        location: {search}
+        gameId,
     } = props;
 
-    let gameId = search.split('gameId=')[1];
-    gameId = gameId && gameId.split('&')[0];
+
+    useEffect(() => {
+        joinGame(gameId)
+    }, gameId);
+
     return <div>
         game with id {gameId}
     </div>
 };
 
-export default withRouter(Game);
+Game.propTypes = {
+    gameId: PropTypes.string.isRequired,
+    text: PropTypes.string,
+    joinGame: PropTypes.func.isRequired,
+};
+
+const mapProps = state => {
+    return {};
+};
+
+const mapActions = dispatch => bindActionCreators({
+    joinGame,
+}, dispatch);
+
+export default connect(mapProps, mapActions)(Game);

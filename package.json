@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack --watch --watch-poll --config webpack.common.js",
     "run-dev": "nodemon --inspect=0.0.0.0 index.js",
-    "run-inspect": "node --inspect=0.0.0.0 index.js"
+    "run-inspect": "node --inspect=0.0.0.0 index.js",
+    "run": "node index.js"
   },
   "repository": {
     "type": "git",

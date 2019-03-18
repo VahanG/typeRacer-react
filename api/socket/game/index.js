@@ -15,7 +15,7 @@ module.exports = (io) => {
         socket.on('join-game', async (id, cb) => {
             const room = await ORM.findFirst('rooms', {id});
             if (!room) {
-                cb('not fount');
+                cb('not found');
                 return;
             }
             if (room.started){
