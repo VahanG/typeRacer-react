@@ -1,5 +1,6 @@
 const socketio = require('socket.io');
 const ORM = require('./../CRUDMaker/ORM');
+const {readCookie} = require('./helper');
 
 module.exports = (server)=>{
     const io = socketio(server, {
@@ -12,6 +13,7 @@ module.exports = (server)=>{
         const user = await ORM.findFirst('user', {token});
         if (user) {
             console.log('Verified for socket');
+            ///socket._locals = {user}; didnt worked for nsp
             next();
         } else {
             next(new Error('Auth error'))
@@ -19,13 +21,6 @@ module.exports = (server)=>{
     });
 
 
-};
-
-
-const readCookie = (name, ca) => {
-    const nameEQ = name + "=";
-    const c = ca.split(';').find(a => a.indexOf(nameEQ) !== -1);
-    return c && c.split(nameEQ)[1] || null;
 };
 
 

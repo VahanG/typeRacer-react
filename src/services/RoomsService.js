@@ -3,7 +3,7 @@ import SocketService from './SocketService';
 
 class RoomsService extends SocketService {
     constructor() {
-        super('/');
+        super('/rooms');
     }
 
     addRoom() {
