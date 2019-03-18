@@ -12,7 +12,7 @@ const GameBoard = (props) => {
     gameId = gameId && gameId.split('&')[0];
 
     const rooms = useMemo(() => <Rooms />, []);
-    const game = useMemo(() => !!gameId && <Game gameId={gameId} />, [gameId]);
+    const game = useMemo(() => <Game gameId={gameId} />, [gameId]);
 
     return <div>
         the game

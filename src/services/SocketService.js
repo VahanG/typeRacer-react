@@ -40,7 +40,7 @@ export default class SocketService {
         this._socket.emit(action, data, cb);
     }
 
-    sendPromisified(action, data) {
+    sendPromisified(action, data = {}) {
         return new Promise((res, rej) => {
             this._socket.emit(action, data, (err, data) => {
                 if (err) {

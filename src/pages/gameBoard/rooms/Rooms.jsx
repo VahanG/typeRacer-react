@@ -6,7 +6,9 @@ import {NavLink} from 'react-router-dom';
 import AddRoom from './AddRoom';
 
 const Rooms = (props) => {
-    const {rooms} = props;
+    const {rooms, gameId} = props;
+
+    if (gameId) return <NavLink to={'/'}>Leave current game to start new</NavLink>;
     return <>
         <h2>select room from existing</h2>
         <div style={{display: 'grid'}}>
@@ -20,12 +22,15 @@ const Rooms = (props) => {
 
 Rooms.propTypes = {
     rooms: PropTypes.array.isRequired,
+    gameId: PropTypes.string,
 };
 
 const mapProps = state => {
     const {rooms} = state.rooms;
+    const {gameId} = state.game;
     return {
         rooms,
+        gameId,
     }
 };
 

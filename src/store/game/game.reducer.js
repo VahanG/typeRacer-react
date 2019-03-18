@@ -1,7 +1,7 @@
 import * as types from './../types';
 
 const initialState = {
-    game: null,
+    gameId: null,
     started: false,
     finished: false,
     text: '',
@@ -20,11 +20,19 @@ export default function userReducer(state = initialState, action) {
             return {
                 ...state,
                 requestingGame: false,
+                gameId: null,
             };
         case types.JOIN_GAME_SUCCESS:
             return {
                 ...state,
                 requestingGame: false,
+                users: action.game.users,
+                gameId: action.game.id,
+            };
+        case types.LEAVE_GAME:
+            return {
+                ...state,
+                gameId: null,
             };
         default:
             return state

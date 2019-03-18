@@ -22,10 +22,19 @@ module.exports = (io) => {
                 cb('game already started');
                 return;
             }
+            const users = room.users || [];
+            const updatedRoom = await ORM.update('rooms', id, {users: [...users, user.id]});
             roomId = `${roomPref}${id}`;
             socket.join(roomId);
-            socket.to(roomId).emit('new-joiner', user);
-            cb(null);
+            socket.to(roomId).emit('room-updated', updatedRoom);
+            cb(null, updatedRoom);
+        });
+
+        socket.on('leave-game', async (id, cb) => {
+            socket.leave(roomId);
+            socket.to(roomId).emit('user-leave', user);
+            roomId = '';
+            cb(null)
         });
 
         socket.on('game-start-request', async (id, cb) => {
@@ -46,7 +55,7 @@ module.exports = (io) => {
         });
 
         socket.on('disconnect', (reason) => {
-            socket.to(roomId).emit('leave-game', user);
+            socket.to(roomId).emit('user-leave', user);
         });
     });
 
