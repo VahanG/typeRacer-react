@@ -35,8 +35,9 @@ module.exports = (io) => {
                 return;
             }
             ORM.update('rooms', id, {started: true});
+            socket.to(roomId).emit('game-start');
         });
-        
+
         socket.on('game-progress', (progress) => {
             socket.to(roomId).emit('game-progress', {user, progress});
             if (progress === 100) {
