@@ -38,9 +38,10 @@ const PrivateRoute = (props) => {
 };
 
 const mapProps = state => {
-    const {currentUser} = state.user;
+    const {currentUser, gettingData} = state.user;
     return {
         currentUser,
+        gettingData
     };
 };
 

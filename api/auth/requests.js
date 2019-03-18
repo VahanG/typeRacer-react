@@ -21,7 +21,8 @@ const getUserByToken = async (req, res, next) => {
     const user = await ORM.findFirst(modelName, {token});
     if (!user) {
         res.status(401);
-        res.send({msg: 'invalid token'})
+        res.send({msg: 'invalid token'});
+        return
     }
     res.locals.user = user;
     next();
