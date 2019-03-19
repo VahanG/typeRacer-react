@@ -25,10 +25,11 @@ const Game = (props) => {
     }, [gameId]);
 
     const text = useMemo(() => !!gameId && <Text />, [gameId]);
+    const players = useMemo(() => !!gameId && <Players />, [gameId]);
 
     return <div>
         {text}
-        <Players />
+        {players}
         <h3>game with id {gameId}</h3>
     </div>
 };

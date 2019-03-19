@@ -7,6 +7,7 @@ const initialState = {
     text: '',
     users: [],
     requestingGame: false,
+    progress: 0,
 };
 
 export default function userReducer(state = initialState, action) {
@@ -34,6 +35,11 @@ export default function userReducer(state = initialState, action) {
             return {
                 ...state,
                 gameId: null,
+            };
+        case types.SET_SELF_PROGRESS:
+            return {
+                ...state,
+                progress: action.progress,
             };
         default:
             return state

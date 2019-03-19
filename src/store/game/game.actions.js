@@ -25,7 +25,10 @@ export function leaveGame() {
 
 export function changeUserProgress(progress) {
     return (dispatch, getState) => {
-        const {} = get
-
+        GameService.setProgress(progress);
+        dispatch({
+            type: types.SET_SELF_PROGRESS,
+            progress,
+        })
     }
 }

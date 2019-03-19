@@ -13,6 +13,10 @@ class RoomsService extends SocketService {
     leaveGame(id) {
         return this.sendPromisified('leave-game');
     }
+
+    setProgress(progress) {
+        return this.sendPromisified('set-progress', progress);
+    }
     init(id) {
         if (this.ready && !this.connected) {
             this.reconnect();
