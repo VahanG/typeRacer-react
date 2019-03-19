@@ -17,9 +17,10 @@ const Text = (props) => {
             setUserInput('');
             return;
         }
+        console.log(currentWord);
         setUserInput(input);
     };
-    const changeUserInput = useCallback( changeUserInputCb, [index]); // just using useCallback
+    const changeUserInput = useCallback( changeUserInputCb, [index, currentWord]); // just using useCallback
     if(!text) return null;
     return (
         <>
