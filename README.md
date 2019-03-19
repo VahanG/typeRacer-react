@@ -11,7 +11,8 @@ To run app in development
 then open localhost:8080
 #
 Add users using /api/users CRUD
-#####example
+######
+example
 `POST /api/user? HTTP/1.1
  Host: localhost:8080
  Content-Type: application/x-www-form-urlencoded
