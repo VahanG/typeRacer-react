@@ -28,6 +28,7 @@ export default function userReducer(state = initialState, action) {
                 requestingGame: false,
                 users: action.game.users,
                 gameId: action.game.id,
+                text: action.game.text,
             };
         case types.LEAVE_GAME:
             return {

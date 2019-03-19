@@ -22,3 +22,10 @@ export function leaveGame() {
         });
     }
 }
+
+export function changeUserProgress(progress) {
+    return (dispatch, getState) => {
+        const {} = get
+
+    }
+}

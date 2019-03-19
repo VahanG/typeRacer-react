@@ -15,7 +15,6 @@ const GameBoard = (props) => {
     const game = useMemo(() => <Game gameId={gameId} />, [gameId]);
 
     return <div>
-        the game
         {game}
         {rooms}
     </div>

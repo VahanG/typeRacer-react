@@ -11,7 +11,8 @@ module.exports=(io)=> {
         });
 
         socket.on('new-room', async (_, cb) => {
-            const room = await ORM.create('rooms', {creatorId});
+            const text = 'This text still static, dynamic text functionality will be provided very soon!';
+            const room = await ORM.create('rooms', {creatorId, text});
             //socket.broadcast.emit('new-room', room);
             cb(null, {id: room});
         });

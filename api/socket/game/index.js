@@ -43,7 +43,7 @@ module.exports = (io) => {
                 cb('only creator can start');
                 return;
             }
-            ORM.update('rooms', id, {started: true});
+            ORM.update('rooms', id, {started: true, startedAt: new Date()}); // probably startedAt wil moved to front
             socket.to(roomId).emit('game-start');
         });
 

@@ -1,9 +1,11 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useMemo} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
 import {joinGame, leaveGame} from './../../../store/game/game.actions';
+import Text from './text/Text';
+import Players from './players/Players';
 
 const Game = (props) => {
     const {
@@ -16,14 +18,18 @@ const Game = (props) => {
 
     useEffect(() => {
         if (gameId){
-            joinGame(gameId)
+            joinGame(gameId);
         } else {
-            joined && leaveGame()
+            joined && leaveGame();
         }
     }, [gameId]);
 
+    const text = useMemo(() => !!gameId && <Text />, [gameId]);
+
     return <div>
-        game with id {gameId}
+        {text}
+        <Players />
+        <h3>game with id {gameId}</h3>
     </div>
 };
 
