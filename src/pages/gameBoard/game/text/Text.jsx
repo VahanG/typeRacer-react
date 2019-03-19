@@ -13,7 +13,7 @@ const Text = (props) => {
     const textArr = useMemo(() => text.split(' '), [text]);
     const [userInput, setUserInput] = useState('');
     const [index, changeIndex] = useState(0);
-    const currentWord = useMemo(() => textArr[index] || '', [index, text]);
+    const currentWord = useMemo(() => textArr[index], [index, text]);
 
     const changeUserInputCb = (input) => {
         if (input === `${currentWord} `) {
@@ -31,8 +31,12 @@ const Text = (props) => {
     return (
         <>
             <h1>{text}</h1>
-            <input onChange={(e) => changeUserInput(e.target.value)} value={userInput}/>
-            {!currentWord.includes(userInput) && <div>wrong input</div>}
+            {!!currentWord && <div>
+                <input onChange={(e) => changeUserInput(e.target.value)} value={userInput}/>
+                {!currentWord.includes(userInput) && <div>wrong input</div>}
+            </div>
+            }
+
         </>
     )
 };
