@@ -23,7 +23,7 @@ module.exports = (io) => {
                 return;
             }
             const users = room.users || [];
-            if (users.find((userId) => userId === user.id)) {
+            if (false && users.find((userId) => userId === user.id)) {
                 cb('user already joined');
                 return;
             }
@@ -36,9 +36,10 @@ module.exports = (io) => {
         });
 
         socket.on('leave-game', async (id, cb) => {
-            leave(currentRoom, user);
-            roomId = '';
-            cb(null);
+            leave(currentRoom, user).then((d) => {
+                roomId = '';
+                cb(null);
+            });
         });
 
         socket.on('game-start-request', async (id, cb) => {
@@ -60,11 +61,13 @@ module.exports = (io) => {
 
         socket.on('disconnect', (reason) => {
             console.log('disconnect');
-            leave(currentRoom, user);
-            roomId = ''
+            leave(currentRoom, user).then(() => {
+                roomId = ''
+            });
         });
 
-        const leave = async (room, user, roomId) => {
+        const leave = async ({id}, user, roomId) => {
+            const room = await ORM.findFirst('rooms', {id});
             const updatedRoom = await ORM.update('rooms', room.id, {users: room.users.filter(u => u !== user.id)});
             socket.leave(roomId);
             socket.to(roomId).emit('user-leave', updatedRoom);

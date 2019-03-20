@@ -19,7 +19,7 @@ class UserService extends Request {
             method: 'GET',
         };
         return this.send({path: '/current', options})
-            .then(({status, json}) => ({status, currentUser: json}));
+            .then(({status, json}) => ({status, currentUser: json.user}));
     }
 
     getUser(id) {
