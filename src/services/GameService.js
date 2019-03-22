@@ -6,7 +6,12 @@ class RoomsService extends SocketService {
         super('/game');
     }
 
-    joinGame(id) {
+    getProgressUpdates(cb) {
+        this.subscribeOnce('game-progress', cb)
+    }
+
+    joinGame(id, progressCb) {
+        this.getProgressUpdates(progressCb);
         return this.sendPromisified('join-game', id);
     }
 
@@ -15,21 +20,21 @@ class RoomsService extends SocketService {
     }
 
     setProgress(progress) {
-        return this.sendPromisified('set-progress', progress);
+        return this.sendPromisified('game-progress', progress);
     }
-    init(id) {
+
+    init(id, progressCb) {
         if (this.ready && !this.connected) {
             this.reconnect();
         }
         if (!this.ready) {
             return this.connect().then(() => {
-                return this.joinGame(id);
+                return this.joinGame(id, progressCb);
             })
         } else {
-            return this.joinGame(id);
+            return this.joinGame(id, progressCb);
         }
     }
-
 }
 
 export default new RoomsService();

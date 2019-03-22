@@ -7,7 +7,7 @@ class RoomsService extends SocketService {
     }
 
     addRoom() {
-        console.log('oppening room');
+        console.log('opening room');
         return this.sendPromisified('new-room').then((data) => {
             const { id: roomId } = data;
             return roomId;

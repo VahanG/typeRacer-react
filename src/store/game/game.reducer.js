@@ -41,6 +41,23 @@ export default function userReducer(state = initialState, action) {
                 ...state,
                 progress: action.progress,
             };
+        case types.SET_USER_PROGRESS:
+            return {
+                ...state,
+                [action.user.id]: {
+                    ...state[action.user.id],
+                    progress: action.progress
+                }
+            };
+        case types.SET_USER_DATA:
+            return {
+                ...state,
+                [action.user.id]: {
+                    ...action.user,
+                    ...state[action.user.id],
+                    progress: action.progress
+                }
+            };
         default:
             return state
     }
