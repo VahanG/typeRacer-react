@@ -6,12 +6,13 @@ import ProgressBar from './ProgressBar';
 
 const Players =
     (props) => {
-        const {progress} = props;
+        const {progress, users} = props;
         return (
-            <>
+            <div>
                 <ProgressBar progress={progress} />
+                {users.map( user => <ProgressBar progress={10}/>)}
                 <h4>your and other players progress will displayed here</h4>
-            </>
+            </div>
         )
     };
 
@@ -25,7 +26,7 @@ const mapProperties = state => {
     const {id} = state.user.currentUser;
     return {
         progress,
-        users: users.filter( user => user.id !== id),
+        users: users.filter( user => user !== id),
     }
 };
 

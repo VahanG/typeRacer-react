@@ -8,11 +8,11 @@ const GameBoard = (props) => {
     const {
         location: {search}
     } = props;
-    let gameId = search.split('gameId=')[1];
-    gameId = gameId && gameId.split('&')[0];
+    let roomId = search.split('gameId=')[1];
+    roomId = roomId && roomId.split('&')[0];
 
     const rooms = useMemo(() => <Rooms />, []);
-    const game = useMemo(() => <Game gameId={gameId} />, [gameId]);
+    const game = useMemo(() => <Game roomId={roomId} />, [roomId]);
 
     return <div>
         {game}

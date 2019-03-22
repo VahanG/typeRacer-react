@@ -10,6 +10,7 @@ import Players from './players/Players';
 const Game = (props) => {
     const {
         gameId,
+        roomId,
         joinGame,
         leaveGame,
         joined,
@@ -17,12 +18,12 @@ const Game = (props) => {
 
 
     useEffect(() => {
-        if (gameId){
-            joinGame(gameId);
+        if (roomId){
+            joinGame(roomId);
         } else {
             joined && leaveGame();
         }
-    }, [gameId]);
+    }, [roomId]);
 
     const text = useMemo(() => !!gameId && <Text />, [gameId]);
     const players = useMemo(() => !!gameId && <Players />, [gameId]);
@@ -35,6 +36,7 @@ const Game = (props) => {
 };
 
 Game.propTypes = {
+    roomId: PropTypes.string.isRequired,
     gameId: PropTypes.string,
     text: PropTypes.string,
     users: PropTypes.array.isRequired,
@@ -49,6 +51,7 @@ const mapProps = state => {
         users,
         text,
         joined: !!gameId,
+        gameId,
     };
 };
 
