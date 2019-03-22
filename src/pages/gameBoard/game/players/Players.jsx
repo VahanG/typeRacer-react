@@ -10,7 +10,7 @@ const Players =
         return (
             <div>
                 <ProgressBar progress={progress} />
-                {users.map( user => <ProgressBar progress={10}/>)}
+                {users.map( user => <ProgressBar key={user} progress={10}/>)}
                 <h4>your and other players progress will displayed here</h4>
             </div>
         )
